@@ -1,0 +1,13 @@
+<div class="board">
+    <section>
+        <div class="container">
+            <div class="col-12">
+                <ul>
+                    <li *ngFor="let board of boards">
+                        <a [routerLink]="[board.id]">{{ board.name }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
