@@ -15,7 +15,8 @@
             margin: 20px 0;
         }
         button {
-            min-width: 120px;
+            width: 40%;
+            max-width: 120px;
             &:first-of-type {
                 margin-right: 10px;
             }
