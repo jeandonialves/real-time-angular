@@ -1,11 +1,20 @@
 <div class="register-project">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p>Novo projeto</p>
+    <section class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="title">{{ data.form === 'new' ? 'Novo projeto': 'Edição do projeto' }}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <mat-divider class="divider"></mat-divider>
+                </div>
             </div>
         </div>
-        <div class="form">
+    </section>
+    <section class="form">
+        <div class="container">
             <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="row">
                     <div class="col-12">
@@ -25,12 +34,12 @@
                     </div>
                     <div class="col-12 text-right">
                         <button type="submit" mat-flat-button color="primary">Salvar</button>
-                        <button mat-stroked-button color="primary">Voltar</button>
+                        <button type="button" mat-dialog-close mat-stroked-button color="primary">Voltar</button>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
+    </section>
 </div>
 
 

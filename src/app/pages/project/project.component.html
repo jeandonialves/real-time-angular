@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-6 text-right">
                     <button (click)="newProject()" mat-flat-button color="primary">
-                        <mat-icon>note_add</mat-icon>
+                        <mat-icon fontSet="material-icons-outlined">note_add_outlined</mat-icon>
                         Novo projeto
                     </button>
                 </div>
@@ -28,8 +28,19 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="title">{{ project.name }}</p>
-                                    <p>{{ project.description }}</p>
+                                    <div class="row align-items-center">
+                                        <div class="col-9">
+                                            <p class="title">{{ project.name }}</p>
+                                        </div>
+                                        <div class="col-3 text-right">
+                                            <button mat-icon-button (click)="editProject(project)">
+                                                <mat-icon class="edit" fontSet="material-icons-outlined">edit_outline</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="description">{{ project.description }}</p>
                                 </div>
                             </div>
                         </div>

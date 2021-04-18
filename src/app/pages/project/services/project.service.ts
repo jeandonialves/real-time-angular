@@ -40,6 +40,10 @@ export class ProjectService {
         return Promise.resolve(this.db.list('projects').push(project));
     }
 
+    update(idProject: string, project: Project): Promise<any> {
+        return Promise.resolve(this.db.list('projects').update(idProject, project));
+    }
+
     getItems(idProject: string): Observable<Item[]> | undefined {
         this.itemsRef = this.db.list(`projects/${idProject}/items`);
 

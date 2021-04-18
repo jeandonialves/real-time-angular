@@ -26,7 +26,20 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  newProject() {
-    const dialogRef = this.dialog.open(RegisterComponent);
+  newProject(): void {
+    this.dialog.open(RegisterComponent, {
+      data: {
+        form: 'new'
+      }
+    });
+  }
+
+  editProject(project: Project): void {
+    this.dialog.open(RegisterComponent, {
+      data: {
+        form: 'edit',
+        obj: project
+      }
+    });
   }
 }
