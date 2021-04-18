@@ -1,9 +1,12 @@
-import { Project } from './../models/project.model';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+
+import { Item } from './../models/item.model';
+import { Project } from './../models/project.model';
+
 
 @Injectable()
 export class ProjectService {
@@ -31,5 +34,19 @@ export class ProjectService {
         return this.itemRef.snapshotChanges().pipe(
             map(c => ({ id: c.payload.key, ...c.payload.val() })
         ));
+    }
+
+    add(project: Project): Promise<any> {
+        return Promise.resolve(this.db.list('projects').push(project));
+    }
+
+    getItems(idProject: string): Observable<Item[]> | undefined {
+        this.itemsRef = this.db.list(`projects/${idProject}/items`);
+
+        return this.itemsRef.snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))
+            )
+        );
     }
 }

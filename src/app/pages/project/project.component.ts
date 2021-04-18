@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Project } from './models/project.model';
 
+import { MatDialog } from '@angular/material/dialog';
+
+import { Project } from './models/project.model';
+import { RegisterComponent } from './partials/register/register.component';
 import { ProjectService } from './services/project.service';
 
 @Component({
@@ -14,12 +16,17 @@ export class ProjectComponent implements OnInit {
   projects: Project[] = [];
 
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.projectService.getAll()?.subscribe((projects: Project[]) => {
       this.projects = projects;
     });
+  }
+
+  newProject() {
+    const dialogRef = this.dialog.open(RegisterComponent);
   }
 }

@@ -1,0 +1,16 @@
+.register-project {
+    .form {
+        .field {
+            width: 100%;
+        }
+        .divider {
+            margin: 20px 0;
+        }
+        button {
+            min-width: 120px;
+            &:first-of-type {
+                margin-right: 10px;
+            }
+        }
+    }
+}

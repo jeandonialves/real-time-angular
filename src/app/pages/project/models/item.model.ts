@@ -2,7 +2,7 @@ export interface Item {
     id: string;
     name: string;
     description: string;
-    status: Status;
+    status: Status
 }
 
 enum Status {

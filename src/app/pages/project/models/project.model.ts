@@ -1,8 +1,8 @@
-import { Board } from '../../board/models/board.model';
+import { Item } from './item.model';
 
 export interface Project {
     id: string;
     name: string;
     description: string;
-    boards: Board[];
+    items: Item[];
 }
