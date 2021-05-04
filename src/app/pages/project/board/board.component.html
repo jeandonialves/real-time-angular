@@ -1,38 +1,38 @@
 <div class="board">
-    <app-section-title [title]="'Board'">
-        <button (click)="newItem()" mat-flat-button color="primary">
-            <mat-icon>note_add</mat-icon>
-            Novo item
-        </button>
-    </app-section-title>
+  <app-section-title [title]="'Board'">
+    <button (click)="newItem()" mat-flat-button color="primary">
+      <mat-icon>note_add</mat-icon>
+      Novo item
+    </button>
+  </app-section-title>
 
-    <div class="container" *ngIf="loading">
-        <div class="row">
-            <div class="col-12">
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-            </div>
-        </div>
+  <div class="container" *ngIf="loading">
+    <div class="row">
+      <div class="col-12">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
     </div>
+  </div>
 
-    <section class="list" *ngIf="!loading">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                  <app-card [title]="'TODO'" color="grey">
-                    <app-item *ngFor="let item of todo" [title]="item.name"></app-item>
-                  </app-card>
-                </div>
-                <div class="col-4">
-                  <app-card [title]="'DOING'" color="orange">
-                    <app-item *ngFor="let item of doing" [title]="item.name"></app-item>
-                  </app-card>
-                </div>
-                <div class="col-4">
-                  <app-card [title]="'DONE'" color="green">
-                    <app-item *ngFor="let item of done" [title]="item.name"></app-item>
-                  </app-card>
-                </div>
-            </div>
+  <section class="list" *ngIf="!loading">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <app-card [title]="'TODO'" color="grey">
+            <app-item *ngFor="let item of todo" [title]="item.name"></app-item>
+          </app-card>
         </div>
-    </section>
+        <div class="col-4">
+          <app-card [title]="'DOING'" color="orange">
+            <app-item *ngFor="let item of doing" [title]="item.name"></app-item>
+          </app-card>
+        </div>
+        <div class="col-4">
+          <app-card [title]="'DONE'" color="green">
+            <app-item *ngFor="let item of done" [title]="item.name"></app-item>
+          </app-card>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

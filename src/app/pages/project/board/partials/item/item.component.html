@@ -1,6 +1,20 @@
 <mat-card class="card-item">
-    <button class="btn-edit" mat-icon-button color="primary">
+    <button *ngIf="!editing" class="btn-edit" mat-icon-button color="primary" (click)="edit()">
         <mat-icon>edit_outline</mat-icon>
     </button>
-    {{ title }}
+    <span *ngIf="!editing">{{ title }}</span>
+    <textarea 
+        class="title-form-control" *ngIf="editing" id="textarea"
+        (blur)="cancel()"
+        placeholder="Digite aqui o título"
+        [formControl]="titleFormControl"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="10">
+    </textarea>
+    <div class="action" *ngIf="editing">
+        <button mat-flat-button color="primary" (click)="save()">Salvar</button>
+        <button mat-stroked-button (click)="cancel()">Cancelar</button>
+    </div>
 </mat-card>
