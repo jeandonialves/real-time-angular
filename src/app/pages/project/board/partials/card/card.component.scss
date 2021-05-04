@@ -1,0 +1,26 @@
+@import '../../../../../../sass/constants';
+
+.list-card {
+    padding: 0;
+    &.grey {
+        background-color: $grey;
+    }
+    &.orange {
+        background-color: $orange;
+    }
+    &.green {
+        background-color: $green;
+    }
+    .banner {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        border-bottom: 1px solid $white;
+        font-weight: 800;
+    }
+    .content {
+        padding: 16px;
+    }
+}

@@ -21,13 +21,15 @@ import { RegisterComponent } from './partials/register/register.component';
 import { BoardComponent } from './board/board.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './board/partials/card/card.component';
+import { ItemComponent } from './board/partials/item/item.component';
 
 @NgModule({
   declarations: [
     ProjectComponent,
     RegisterComponent,
     BoardComponent,
-    CardComponent
+    CardComponent,
+    ItemComponent
   ],
   imports: [
     CommonModule,

@@ -18,52 +18,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                  <mat-card class="list-card">
-                    <div class="banner todo">
-                      TODO
-                    </div>
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-12">
-                          <mat-card *ngFor="let item of todo">
-                            {{ item.name }}
-                          </mat-card>
-                        </div>
-                      </div>
-                    </div>
-                  </mat-card>
+                  <app-card [title]="'TODO'" color="grey">
+                    <app-item *ngFor="let item of todo" [title]="item.name"></app-item>
+                  </app-card>
                 </div>
                 <div class="col-4">
-                  <mat-card class="list-card">
-                    <div class="banner doing">
-                      DOING
-                    </div>
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-12">
-                          <mat-card *ngFor="let item of doing">
-                            {{ item.name }}
-                          </mat-card>
-                        </div>
-                      </div>
-                    </div>
-                  </mat-card>
+                  <app-card [title]="'DOING'" color="orange">
+                    <app-item *ngFor="let item of doing" [title]="item.name"></app-item>
+                  </app-card>
                 </div>
                 <div class="col-4">
-                  <mat-card class="list-card">
-                    <div class="banner done">
-                      DONE
-                    </div>
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-12">
-                          <mat-card *ngFor="let item of done">
-                            {{ item.name }}
-                          </mat-card>
-                        </div>
-                      </div>
-                    </div>
-                  </mat-card>
+                  <app-card [title]="'DONE'" color="green">
+                    <app-item *ngFor="let item of done" [title]="item.name"></app-item>
+                  </app-card>
                 </div>
             </div>
         </div>

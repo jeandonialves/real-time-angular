@@ -1,1 +1,12 @@
-<p>card works!</p>
+<mat-card class="list-card" [ngClass]="color">
+    <div class="banner">
+        {{ title }}
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+</mat-card>
