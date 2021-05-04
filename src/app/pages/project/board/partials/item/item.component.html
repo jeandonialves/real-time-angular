@@ -2,10 +2,9 @@
     <button *ngIf="!editing" class="btn-edit" mat-icon-button color="primary" (click)="edit()">
         <mat-icon>edit_outline</mat-icon>
     </button>
-    <span *ngIf="!editing">{{ title }}</span>
+    <span *ngIf="!editing">{{ item.name }}</span>
     <textarea 
         class="title-form-control" *ngIf="editing" id="textarea"
-        (blur)="cancel()"
         placeholder="Digite aqui o título"
         [formControl]="titleFormControl"
         cdkTextareaAutosize
@@ -14,7 +13,7 @@
         cdkAutosizeMaxRows="10">
     </textarea>
     <div class="action" *ngIf="editing">
-        <button mat-flat-button color="primary" (click)="save()">Salvar</button>
-        <button mat-stroked-button (click)="cancel()">Cancelar</button>
+        <button type="button" mat-flat-button color="primary" (click)="save()">Salvar</button>
+        <button mat-stroked-button (click)="closeEditing()">Cancelar</button>
     </div>
 </mat-card>

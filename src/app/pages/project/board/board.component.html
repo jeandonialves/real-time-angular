@@ -19,17 +19,17 @@
       <div class="row">
         <div class="col-4">
           <app-card [title]="'TODO'" color="grey">
-            <app-item *ngFor="let item of todo" [title]="item.name"></app-item>
+            <app-item *ngFor="let item of todo" [item]="item" [idProject]="idProject"></app-item>
           </app-card>
         </div>
         <div class="col-4">
           <app-card [title]="'DOING'" color="orange">
-            <app-item *ngFor="let item of doing" [title]="item.name"></app-item>
+            <app-item *ngFor="let item of doing" [item]="item" [idProject]="idProject"></app-item>
           </app-card>
         </div>
         <div class="col-4">
           <app-card [title]="'DONE'" color="green">
-            <app-item *ngFor="let item of done" [title]="item.name"></app-item>
+            <app-item *ngFor="let item of done" [item]="item" [idProject]="idProject"></app-item>
           </app-card>
         </div>
       </div>

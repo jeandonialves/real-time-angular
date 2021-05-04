@@ -1,5 +1,7 @@
+import { Item } from './../../../models/item.model';
+import { ProjectService } from './../../../services/project.service';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, ElementRef, Input, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,21 +11,25 @@ import { FormControl } from '@angular/forms';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() title: string | undefined;
+  @Input() item!: Item;
+  @Input() idProject = '';
+
   titleFormControl = new FormControl('');
 
   editing = false;
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
 
-  constructor() { }
+  constructor(
+    private projectService: ProjectService
+  ) { }
 
   ngOnInit(): void {
-    this.titleFormControl.setValue(this.title);
+    this.setValueTitle(this.item.name);
   }
 
   edit(): void {
     this.editing = true;
-    this.titleFormControl.setValue(this.title);
+    this.setValueTitle(this.item.name);
     setTimeout(() => {
       const el = document.getElementById('textarea');
       if (el) {
@@ -32,12 +38,22 @@ export class ItemComponent implements OnInit {
     }, 100);
   }
 
-  cancel(): void {
+  closeEditing(): void {
     this.editing = false;
   }
 
   save(): void {
+    this.item.name = this.titleFormControl.value.trim();
+    this.projectService.updateItem(this.idProject, this.item.id, this.item).then(() => {
+      this.setValueTitle(this.item.name);
+      this.closeEditing();
+    }, error => {
+      console.error(error);
+    });
+  }
 
+  setValueTitle(title: string): void {
+    this.titleFormControl.setValue(title);
   }
 
 }

@@ -13,7 +13,6 @@ import { Item } from './../models/item.model';
 export class BoardComponent implements OnInit {
 
   items: Item[] = [];
-  displayedColumns: string[] = ['name', 'description', 'status'];
   idProject!: string;
   loading = false;
 
@@ -50,7 +49,7 @@ export class BoardComponent implements OnInit {
           verticalPosition: 'top',
         });
       }
-      );
+    );
   }
 
   statusSelected(event: string, idItem: string): void {
