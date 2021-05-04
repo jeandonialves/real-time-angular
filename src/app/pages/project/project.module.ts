@@ -10,19 +10,24 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { SharedModule } from './../../shared/shared.module';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { ProjectService } from './services/project.service';
 import { RegisterComponent } from './partials/register/register.component';
 import { BoardComponent } from './board/board.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CardComponent } from './board/partials/card/card.component';
 
 @NgModule({
   declarations: [
     ProjectComponent,
     RegisterComponent,
-    BoardComponent
+    BoardComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +41,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    SharedModule
   ],
   providers: [
     ProjectService

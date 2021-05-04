@@ -1,17 +1,33 @@
+@import './../../../../sass/constants';
+
 .board {
     padding: 50px 0;
-    .header {
-        .title {
-            margin: 0;
-        }
-        .divider {
-            margin-top: 20px;
-        }
-    }
-    .items {
-        .table {
-            width: 100%;
-            margin-top: 40px;
+    .list {
+        margin-top: 40px;
+        .list-card {
+            padding: 0;
+            .banner {
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $white;
+                &.todo {
+                    background-color: $grey;
+                }
+                &.doing {
+                    background-color: $orange;
+                }
+                &.done{
+                    background-color: $green;
+                }
+            }
+            .content {
+                padding: 16px;
+                mat-card {
+                    margin-bottom: 10px;
+                }
+            }
         }
     }
 }

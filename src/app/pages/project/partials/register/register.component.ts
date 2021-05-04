@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
           verticalPosition: 'top',
         });
       }
-      );
+    );
   }
 
   update(): void {

@@ -14,6 +14,7 @@ import { ProjectService } from './services/project.service';
 export class ProjectComponent implements OnInit {
 
   projects: Project[] = [];
+  loading = false;
 
   constructor(
     private projectService: ProjectService,
@@ -21,8 +22,10 @@ export class ProjectComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.projectService.getAll()?.subscribe((projects: Project[]) => {
       this.projects = projects;
+      this.loading = false;
     });
   }
 

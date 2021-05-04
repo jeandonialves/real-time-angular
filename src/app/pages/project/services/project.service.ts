@@ -53,4 +53,12 @@ export class ProjectService {
             )
         );
     }
+
+    addNewItem(idProject: string, status: string): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/items`).push({ status }));
+    }
+
+    updateItem(idProject: string, idItem: string, item: Item): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/items`).update(idItem, item));
+    }
 }
