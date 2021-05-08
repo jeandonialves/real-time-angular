@@ -73,18 +73,6 @@ export class BoardComponent implements OnInit {
     console.log(event);
   }
 
-  newItem(): void {
-    // this.projectService.addNewItem(this.idProject, 'TODO')
-    //   .catch(error => {
-    //     this.snackBar.open('Ocorreu um erro!', 'Fechar', {
-    //       duration: 2000,
-    //       horizontalPosition: 'center',
-    //       verticalPosition: 'top',
-    //     });
-    //   }
-    // );
-  }
-
   // statusSelected(event: string, idItem: string): void {
   //   const obj = this.items.find(item => item.id === idItem) as Item;
   //   obj.status = event;

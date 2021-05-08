@@ -2,7 +2,7 @@
     <button *ngIf="!editing" class="btn-edit" mat-icon-button color="primary" (click)="edit()">
         <mat-icon>edit_outline</mat-icon>
     </button>
-    <span *ngIf="!editing">{{ item.name }}</span>
+    <span *ngIf="!editing">{{ task.name }}</span>
     <textarea 
         class="title-form-control" *ngIf="editing" id="textarea"
         placeholder="Digite aqui o título"

@@ -1,18 +1,19 @@
 import { Task } from '../../../models/task.model';
-import { ProjectService } from './../../../services/project.service';
+import { ProjectService } from '../../../services/project.service';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss']
 })
-export class ItemComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
-  @Input() item!: Task;
+  @Input() task!: Task;
   @Input() idProject = '';
+  @Input() idTrack = '';
 
   titleFormControl = new FormControl('');
 
@@ -24,12 +25,12 @@ export class ItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setValueTitle(this.item.name);
+    this.setValueTitle(this.task.name);
   }
 
   edit(): void {
     this.editing = true;
-    this.setValueTitle(this.item.name);
+    this.setValueTitle(this.task.name);
     setTimeout(() => {
       const el = document.getElementById('textarea');
       if (el) {
@@ -43,13 +44,13 @@ export class ItemComponent implements OnInit {
   }
 
   save(): void {
-    // this.item.name = this.titleFormControl.value.trim();
-    // this.projectService.updateItem(this.idProject, this.item.id, this.item).then(() => {
-    //   this.setValueTitle(this.item.name);
-    //   this.closeEditing();
-    // }, error => {
-    //   console.error(error);
-    // });
+    this.task.name = this.titleFormControl.value.trim();
+    this.projectService.updateTask(this.idProject, this.idTrack, this.task.id, this.task).then(() => {
+      this.setValueTitle(this.task.name);
+      this.closeEditing();
+    }, error => {
+      console.error(error);
+    });
   }
 
   setValueTitle(title: string): void {

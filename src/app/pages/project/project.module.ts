@@ -21,16 +21,16 @@ import { ProjectService } from './services/project.service';
 import { RegisterComponent } from './partials/register/register.component';
 import { BoardComponent } from './board/board.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CardComponent } from './board/partials/card/card.component';
-import { ItemComponent } from './board/partials/item/item.component';
+import { CardTrackComponent } from './board/partials/card-track/card-track.component';
+import { TaskComponent } from './board/partials/task/task.component';
 
 @NgModule({
   declarations: [
     ProjectComponent,
     RegisterComponent,
     BoardComponent,
-    CardComponent,
-    ItemComponent
+    CardTrackComponent,
+    TaskComponent
   ],
   imports: [
     CommonModule,

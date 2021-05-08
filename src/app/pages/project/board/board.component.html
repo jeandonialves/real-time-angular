@@ -1,10 +1,5 @@
 <div class="board">
-  <app-section-title [title]="'Board'">
-    <button (click)="newItem()" mat-flat-button color="primary">
-      <mat-icon>note_add</mat-icon>
-      Novo item
-    </button>
-  </app-section-title>
+  <app-section-title [title]="'Board'"></app-section-title>
 
   <div class="container" *ngIf="loading">
     <div class="row">
@@ -16,14 +11,24 @@
 
   <section class="list" *ngIf="!loading">
     <div class="container">
-      <div class="row" cdkDropList [cdkDropListData]="tracks" (cdkDropListDropped)="onTrackDrop($event)">
+      <div class="row" 
+        cdkDropList 
+        [cdkDropListData]="tracks" 
+        (cdkDropListDropped)="onTrackDrop($event)">
+        
         <div class="col-4" *ngFor="let track of tracks">
-          <app-card [title]="track.title" [color]="track.color">
-            <div class="content-drop-list" cdkDropList [id]="track.id" [cdkDropListData]="track.tasks" [cdkDropListConnectedTo]="trackIds" (cdkDropListDropped)="onTalkDrop($event)">
-              <app-item *ngFor="let task of track.tasks" [item]="task" [idProject]="idProject"></app-item>
+          <app-card-track [title]="track.title" [color]="track.color">
+            <div class="content-drop-list" 
+              cdkDropList 
+              [id]="track.id" 
+              [cdkDropListData]="track.tasks" 
+              [cdkDropListConnectedTo]="trackIds"
+              (cdkDropListDropped)="onTalkDrop($event)">
+              <app-task *ngFor="let task of track.tasks" [task]="task" [idProject]="idProject" [idTrack]="track.id"></app-task>
             </div>
-          </app-card>
+          </app-card-track>
         </div>
+      
       </div>
     </div>
   </section>

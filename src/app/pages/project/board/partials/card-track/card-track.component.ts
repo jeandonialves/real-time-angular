@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'app-card-track',
+  templateUrl: './card-track.component.html',
+  styleUrls: ['./card-track.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardTrackComponent implements OnInit {
 
   @Input() title: string | undefined;
   @Input() color = 'grey';
