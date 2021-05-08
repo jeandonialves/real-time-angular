@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SharedModule } from './../../shared/shared.module';
 import { ProjectRoutingModule } from './project-routing.module';
@@ -46,6 +47,7 @@ import { ItemComponent } from './board/partials/item/item.component';
     MatSnackBarModule,
     MatMenuModule,
     MatProgressBarModule,
+    DragDropModule,
     SharedModule
   ],
   providers: [

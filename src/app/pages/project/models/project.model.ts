@@ -1,8 +1,8 @@
-import { Item } from './item.model';
+import { Track } from './track.model';
 
 export interface Project {
     id: string;
     name: string;
     description: string;
-    items: Item[];
+    tracks: Track[];
 }

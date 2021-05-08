@@ -16,20 +16,12 @@
 
   <section class="list" *ngIf="!loading">
     <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <app-card [title]="'TODO'" color="grey">
-            <app-item *ngFor="let item of todo" [item]="item" [idProject]="idProject"></app-item>
-          </app-card>
-        </div>
-        <div class="col-4">
-          <app-card [title]="'DOING'" color="orange">
-            <app-item *ngFor="let item of doing" [item]="item" [idProject]="idProject"></app-item>
-          </app-card>
-        </div>
-        <div class="col-4">
-          <app-card [title]="'DONE'" color="green">
-            <app-item *ngFor="let item of done" [item]="item" [idProject]="idProject"></app-item>
+      <div class="row" cdkDropList [cdkDropListData]="tracks" (cdkDropListDropped)="onTrackDrop($event)">
+        <div class="col-4" *ngFor="let track of tracks">
+          <app-card [title]="track.title" [color]="track.color">
+            <div class="content-drop-list" cdkDropList [id]="track.id" [cdkDropListData]="track.tasks" [cdkDropListConnectedTo]="trackIds" (cdkDropListDropped)="onTalkDrop($event)">
+              <app-item *ngFor="let task of track.tasks" [item]="task" [idProject]="idProject"></app-item>
+            </div>
           </app-card>
         </div>
       </div>

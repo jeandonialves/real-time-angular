@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
   }
 
   add(): void {
-    this.projectService.add(this.form.value)
+    this.projectService.addProject(this.form.value)
       .then(() => {
         this.dialogRef.close();
         this.snackBar.open('Projeto cadastrado com sucesso!', 'Fechar', {
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   update(): void {
-    this.projectService.update(this.data.obj.id, this.form.value)
+    this.projectService.updateProject(this.data.obj.id, this.form.value)
       .then(() => {
         this.dialogRef.close();
         this.snackBar.open('Projeto atualizado com sucesso!', 'Fechar', {

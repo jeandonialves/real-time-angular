@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() title: string | undefined;
-  @Input() color: 'grey' | 'orange' | 'green' = 'grey';
+  @Input() color = 'grey';
 
   constructor() { }
 

@@ -1,9 +1,11 @@
+import { Track } from './../models/track.model';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProjectService } from '../services/project.service';
-import { Item } from './../models/item.model';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-board',
@@ -12,13 +14,10 @@ import { Item } from './../models/item.model';
 })
 export class BoardComponent implements OnInit {
 
-  items: Item[] = [];
   idProject!: string;
-  loading = false;
+  tracks: Track[] = [];
 
-  todo: Item[] = [];
-  doing: Item[] = [];
-  done: Item[] = [];
+  loading = false;
 
   constructor(
     private projectService: ProjectService,
@@ -30,34 +29,68 @@ export class BoardComponent implements OnInit {
     this.loading = true;
     this.activatedRoute.params.subscribe(params => {
       this.idProject = params.idProject;
-      this.projectService.getItems(this.idProject)?.subscribe((items: Item[]) => {
-        this.items = items;
-        this.todo = this.items.filter(obj => obj.status === 'TODO');
-        this.doing = this.items.filter(obj => obj.status === 'DOING');
-        this.done = this.items.filter(obj => obj.status === 'DONE');
+      this.projectService.getAllTracks(this.idProject)?.subscribe((tracks: Track[]) => {
+        this.tracks = tracks;
+
+        this.tracks.map(track => {
+          const tasks: Task[] = [];
+          Object.entries(track.tasks).forEach(([key, value]) => {
+            const task: Task = value;
+            task.id = key;
+            tasks.push(task);
+          });
+          track.tasks = tasks;
+          return track;
+        });
+
+        console.log(this.tracks);
         this.loading = false;
       });
     });
   }
 
+
+
+  get trackIds(): string[] {
+    return this.tracks.map(track => track.id);
+  }
+
+  onTalkDrop(event: CdkDragDrop<Task[]>): void {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+
+    console.log(event);
+  }
+
+  onTrackDrop(event: CdkDragDrop<Track[]>): void {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    console.log(event);
+  }
+
   newItem(): void {
-    this.projectService.addNewItem(this.idProject, 'TODO')
-      .catch(error => {
-        this.snackBar.open('Ocorreu um erro!', 'Fechar', {
-          duration: 2000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-      }
-    );
+    // this.projectService.addNewItem(this.idProject, 'TODO')
+    //   .catch(error => {
+    //     this.snackBar.open('Ocorreu um erro!', 'Fechar', {
+    //       duration: 2000,
+    //       horizontalPosition: 'center',
+    //       verticalPosition: 'top',
+    //     });
+    //   }
+    // );
   }
 
-  statusSelected(event: string, idItem: string): void {
-    const obj = this.items.find(item => item.id === idItem) as Item;
-    obj.status = event;
+  // statusSelected(event: string, idItem: string): void {
+  //   const obj = this.items.find(item => item.id === idItem) as Item;
+  //   obj.status = event;
 
-    this.projectService.updateItem(this.idProject, idItem, obj).then(res => {
-      
-    });
-  }
+  //   this.projectService.updateItem(this.idProject, idItem, obj).then(res => {
+
+  //   });
+  // }
 }

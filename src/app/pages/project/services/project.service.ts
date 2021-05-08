@@ -1,10 +1,11 @@
+import { Track } from './../models/track.model';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 
-import { Item } from './../models/item.model';
+import { Task } from '../models/task.model';
 import { Project } from './../models/project.model';
 
 
@@ -18,7 +19,7 @@ export class ProjectService {
         private db: AngularFireDatabase
     ) { }
 
-    getAll(): Observable<Project[]> | undefined {
+    getAllProjects(): Observable<Project[]> | undefined {
         this.itemsRef = this.db.list('projects');
 
         return this.itemsRef.snapshotChanges().pipe(
@@ -28,7 +29,7 @@ export class ProjectService {
         );
     }
 
-    getById(id: string): Observable<Project> | undefined {
+    getProjectById(id: string): Observable<Project> | undefined {
         this.itemRef = this.db.object('projects/' + id);
 
         return this.itemRef.snapshotChanges().pipe(
@@ -36,16 +37,16 @@ export class ProjectService {
         ));
     }
 
-    add(project: Project): Promise<any> {
+    addProject(project: Project): Promise<any> {
         return Promise.resolve(this.db.list('projects').push(project));
     }
 
-    update(idProject: string, project: Project): Promise<any> {
+    updateProject(idProject: string, project: Project): Promise<any> {
         return Promise.resolve(this.db.list('projects').update(idProject, project));
     }
 
-    getItems(idProject: string): Observable<Item[]> | undefined {
-        this.itemsRef = this.db.list(`projects/${idProject}/items`);
+    getAllTracks(idProject: string): Observable<Track[]> | undefined {
+        this.itemsRef = this.db.list(`projects/${idProject}/tracks`);
 
         return this.itemsRef.snapshotChanges().pipe(
             map(changes =>
@@ -54,11 +55,29 @@ export class ProjectService {
         );
     }
 
-    addNewItem(idProject: string, status: string): Promise<any> {
-        return Promise.resolve(this.db.list(`projects/${idProject}/items`).push({ status }));
+    addTrack(idProject: string, status: string): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/tracks`).push({ status }));
     }
 
-    updateItem(idProject: string, idItem: string, item: Item): Promise<any> {
-        return Promise.resolve(this.db.list(`projects/${idProject}/items`).update(idItem, item));
+    updateTrack(idProject: string, idItem: string, item: Task): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/tracks`).update(idItem, item));
+    }
+
+    getAllTasks(idProject: string, idTrack: string): Observable<Task[]> | undefined {
+        this.itemsRef = this.db.list(`projects/${idProject}/tracks/${idTrack}/tasks`);
+
+        return this.itemsRef.snapshotChanges().pipe(
+            map(changes =>
+              changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))
+            )
+        );
+    }
+
+    addTask(idProject: string, idTrack: string, status: string): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/tracks/${idTrack}/tasks`).push({ status }));
+    }
+
+    updateTask(idProject: string, idTrack: string, idTask: string, task: Task): Promise<any> {
+        return Promise.resolve(this.db.list(`projects/${idProject}/tracks/${idTrack}/tasks`).update(idTask, task));
     }
 }

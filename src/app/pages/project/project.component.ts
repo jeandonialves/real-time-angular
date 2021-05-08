@@ -23,7 +23,7 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.projectService.getAll()?.subscribe((projects: Project[]) => {
+    this.projectService.getAllProjects()?.subscribe((projects: Project[]) => {
       this.projects = projects;
       this.loading = false;
     });
